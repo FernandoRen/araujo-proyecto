@@ -40,6 +40,7 @@ function cargarUsuarios() {
                     <td>${backEnd_resp[i].idusuario}</td>
                     <td>${backEnd_resp[i].nombreUsuario}</td>
                     <td>${backEnd_resp[i].usuario}</td>
+                    <td>${backEnd_resp[i].sueldo}</td>
                     <td>${backEnd_resp[i].tipoRol}</td>
                     <td>${backEnd_resp[i].nombreProyecto}</td>
                     <td><div class="text-primary"><ion-icon name="pencil" data-bs-toggle="modal" data-bs-target="#updateModal" id="u${backEnd_resp[i].idusuario}" class="pt-2 m-1 click-update" onclick="getDatosAJAX()"></ion-icon></div></td>
@@ -97,7 +98,7 @@ function agregarUsuario(e) {
     let pass_user = document.getElementById("pass_user");
     let rol_user = document.getElementById("rol_user");
     let proyecto_user = document.getElementById("proyecto_user");
-    let salario_user = document.getElementById("salario_user");
+    let sueldo_user = document.getElementById("sueldo_user");
 
     //variables DOM
     let formatoPassword_DOM = document.getElementById("formato-password");
@@ -133,6 +134,13 @@ function agregarUsuario(e) {
         Swal.fire("Error", "Por favor seleccione un rol", "error");
     } else if (proyecto_user.value === "0" || proyecto_user.value === undefined) {
         Swal.fire("Error", "Por favor seleccione un proyecto", "error");
+    } else if (sueldo_user.value === "" || sueldo_user.value === undefined) {
+        Swal.fire("Error", "Por favor ingresa un sueldo para el usuario", "error");
+    } else if (isNaN(sueldo_user.value)) {
+        Swal.fire("Error", "Error, ingrese el salario en formato númerico por favor", "error");
+    } else if (!validarSueldoUsuario(rol_user.value, sueldo_user.value)) {
+        let errorSueldo = alertSueldo(rol_user.value)
+        Swal.fire("Error", errorSueldo, "error");
     } else {
         formNuevoUser_DOM.append(`<input type="hidden" name="peticion" class="peticion" value="insertar">`);
         $.post("../controller/controlador-crud-usuarios.php", formNuevoUser_DOM.serialize(), function(resp) {
@@ -147,7 +155,6 @@ function agregarUsuario(e) {
             } else {
                 Swal.fire("Error", "No se pudo agregar el usuario", "error");
             }
-
         });
     }
 
@@ -193,6 +200,7 @@ function actualizarUsuario(e) {
     let email_user = document.getElementById("email_user2");
     let rol_user = document.getElementById("rol_user2");
     let proyecto_user = document.getElementById("proyecto_user2");
+    let sueldo_user = document.getElementById("sueldo_user2");
 
     //variables DOM
     let formUpdateUser_DOM = $("#formulario-actualizarUsuario");
@@ -207,6 +215,13 @@ function actualizarUsuario(e) {
         Swal.fire("Error", "Por favor seleccione un rol", "error");
     } else if (proyecto_user.value === "0" || proyecto_user.value === undefined) {
         Swal.fire("Error", "Por favor seleccione un proyecto", "error");
+    } else if (sueldo_user.value === "" || sueldo_user.value === undefined) {
+        Swal.fire("Error", "Por favor ingresa un sueldo para el usuario", "error");
+    } else if (isNaN(sueldo_user.value)) {
+        Swal.fire("Error", "Error, ingrese el salario en formato númerico por favor", "error");
+    } else if (!validarSueldoUsuario(rol_user.value, sueldo_user.value)) {
+        let errorSueldo = alertSueldo(rol_user.value)
+        Swal.fire("Error", errorSueldo, "error");
     } else {
         formUpdateUser_DOM.append(`<input type="hidden" name="peticion" class="peticion" value="actualizar">`);
         formUpdateUser_DOM.append(`<input type="hidden" name="id_u" class="peticion" value="${idforUpdating}">`);
@@ -237,14 +252,72 @@ function getDatosAJAX() {
                     let email_user = document.getElementById("email_user2");
                     let rol_user = document.getElementById("rol_user2");
                     let proyecto_user = document.getElementById("proyecto_user2");
+                    let sueldo_user2 = document.getElementById("sueldo_user2");
 
                     nombre_user.value = respJson[0].nombreUsuario;
                     email_user.value = respJson[0].usuario;
                     rol_user.value = respJson[0].idroles;
                     proyecto_user.value = respJson[0].idproyecto;
+                    sueldo_user2.value = respJson[0].sueldo;
                     idforUpdating = respJson[0].idusuario;
                 }
             });
         });
     });
+}
+
+function validarSueldoUsuario(rol, sueldo) {
+    let respuesta;
+    switch (rol) {
+        case "1":
+            if (sueldo < 10000 || sueldo > 12000) {
+                respuesta = false;
+            } else {
+                respuesta = true;
+            }
+            break;
+        case "2":
+            if (sueldo < 12000 || sueldo > 13000) {
+                respuesta = false;
+            } else {
+                respuesta = true;
+            }
+            break;
+        case "3":
+            if (sueldo < 16000 || sueldo > 20000) {
+                respuesta = false;
+            } else {
+                respuesta = true;
+            }
+            break;
+
+        case "4":
+            if (sueldo < 20000 || sueldo > 24000) {
+                respuesta = false;
+            } else {
+                respuesta = true;
+            }
+            break;
+    }
+
+    return respuesta;
+}
+
+function alertSueldo(rol) {
+    let respSueldo = "";
+    switch (rol) {
+        case "1":
+            respSueldo = "El sueldo para este tipo de usuario debe ser entre $10,000 y $12,000";
+            break;
+        case "2":
+            respSueldo = "El sueldo para este tipo de usuario debe ser entre $12,000 y $13,000";
+            break;
+        case "3":
+            respSueldo = "El sueldo para este tipo de usuario debe ser entre $16,000 y $20,000";
+            break;
+        case "4":
+            respSueldo = "El sueldo para este tipo de usuario debe ser entre $20,000 y $24,000";
+            break;
+    }
+    return respSueldo;
 }

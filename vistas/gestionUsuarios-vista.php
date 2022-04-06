@@ -35,6 +35,9 @@
                     </select>
                     <br>
 
+                    <label class="form-label" for="sueldo_user">Sueldo</label>
+                    <input type="number" id="sueldo_user" name="sueldo_user" class="form-control">
+
                     <div class="mt-4"></div>
                     <div class="p-2"></div>
 
@@ -49,6 +52,7 @@
                             <td class="text-light">ID</td>
                             <td class="text-light">Nombre</td>
                             <td class="text-light">Email</td>
+                            <td class="text-light">Sueldo</td>
                             <td class="text-light">Rol</td>
                             <td class="text-light">Proyecto asignado</td>
                             <td class="text-light">Editar</td>
@@ -88,6 +92,9 @@
                     <select name="proyecto_user2" id="proyecto_user2" class="form-select mt-1">
                         <option value="0" selected> -- </option>
                     </select>
+
+                    <label class="form-label" for="sueldo_user2">Sueldo</label>
+                    <input type="number" id="sueldo_user2" name="sueldo_user2" class="form-control">
 
                     <div class="mt-4"></div>
                     <div class="p-2"></div>

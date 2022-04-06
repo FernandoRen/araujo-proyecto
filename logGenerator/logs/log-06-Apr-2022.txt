@@ -1,0 +1,1 @@
+[00:44:23 06-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: fernando@hotmail.com inició sesión en la aplicación 

@@ -44,8 +44,8 @@
             return json_encode($mostrar_proyectos);
         }
 
-        public function insertarUsuario_controlador($nombre_user, $email_user, $password_encriptada, $rol_user, $proyecto_user){
-            $insertarUsuario = $this->modelo->agregarUsuarioModelo($nombre_user, $email_user, $password_encriptada, $rol_user, $proyecto_user);
+        public function insertarUsuario_controlador($nombre_user, $email_user, $sueldo_user, $password_encriptada, $rol_user, $proyecto_user){
+            $insertarUsuario = $this->modelo->agregarUsuarioModelo($nombre_user, $email_user, $sueldo_user, $password_encriptada, $rol_user, $proyecto_user);
             return json_encode($insertarUsuario);
         }
 
@@ -59,8 +59,8 @@
             return json_encode($consulta);
         }
 
-        public function actualizarUsuario_controlador($id, $nombre_user, $email_user, $rol_user, $proyecto_user){
-            $update_query =  $this->modelo->actualizarUsuario_modelo($id, $nombre_user, $email_user, $rol_user, $proyecto_user);
+        public function actualizarUsuario_controlador($id, $nombre_user, $email_user, $sueldo_user, $rol_user, $proyecto_user){
+            $update_query =  $this->modelo->actualizarUsuario_modelo($id, $nombre_user, $email_user, $sueldo_user, $rol_user, $proyecto_user);
             return json_encode($update_query);
         }
 
@@ -87,8 +87,9 @@
                     $pass_user_Post = htmlspecialchars($_POST['pass_user'], ENT_QUOTES, 'UTF-8' );
                     $rol_user_Post = htmlspecialchars($_POST['rol_user'], ENT_QUOTES, 'UTF-8' );
                     $proyecto_user_Post = htmlspecialchars($_POST['proyecto_user'], ENT_QUOTES, 'UTF-8' );
+                    $sueldo_user_Post = htmlspecialchars($_POST['sueldo_user'], ENT_QUOTES, 'UTF-8' );
 
-                    $jsonResp = $this->insertarUsuario_controlador($nombre_user_Post, $email_user_Post, $pass_user_Post, $rol_user_Post, $proyecto_user_Post);
+                    $jsonResp = $this->insertarUsuario_controlador($nombre_user_Post, $email_user_Post, $sueldo_user_Post, $pass_user_Post, $rol_user_Post, $proyecto_user_Post);
                     echo json_decode($jsonResp);
                 break;
 
@@ -110,8 +111,9 @@
                     $email_user_Post = htmlspecialchars($_POST['email_user2'], ENT_QUOTES, 'UTF-8' );
                     $rol_user_Post = htmlspecialchars($_POST['rol_user2'], ENT_QUOTES, 'UTF-8' );
                     $proyecto_user_Post = htmlspecialchars($_POST['proyecto_user2'], ENT_QUOTES, 'UTF-8' );
+                    $sueldo_user_Post = htmlspecialchars($_POST['sueldo_user2'], ENT_QUOTES, 'UTF-8' );
 
-                    $jsonResp = $this->actualizarUsuario_controlador($id_Post, $nombre_user_Post, $email_user_Post, $rol_user_Post, $proyecto_user_Post);
+                    $jsonResp = $this->actualizarUsuario_controlador($id_Post, $nombre_user_Post, $email_user_Post, $sueldo_user_Post, $rol_user_Post, $proyecto_user_Post);
                     echo json_decode($jsonResp);
                 break;
 

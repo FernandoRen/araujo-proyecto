@@ -56,7 +56,7 @@
 
         public function mostrarProyectosModelo(){
             try {
-                $respuesta_consulta = $this->newConexion->prepare("SELECT idproyecto, nombre FROM proyecto;");
+                $respuesta_consulta = $this->newConexion->prepare("SELECT idproyecto, nombre FROM proyecto WHERE estatus = 1;");
                  //Ejecutamos la consulta
                  $respuesta_consulta->execute();
                 
@@ -72,12 +72,12 @@
             }
         }
 
-        public function agregarUsuarioModelo($nombre_user, $email_user, $pass_user, $rol_user, $proyecto_user){
+        public function agregarUsuarioModelo($nombre_user, $email_user, $sueldo, $pass_user, $rol_user, $proyecto_user){
             try {
                 $password_encriptada = $this->cifrar->cifrarTexto($pass_user);
-                $insert_query = $this->newConexion->prepare("INSERT INTO usuarios (nombreUsuario, usuario, pass, rol, idproyecto, estatus) VALUES (?,?,?,?,?,?)");
+                $insert_query = $this->newConexion->prepare("INSERT INTO usuarios (nombreUsuario, usuario, sueldo, pass, rol, idproyecto, estatus) VALUES (?,?,?,?,?,?,?)");
                  //Ejecutamos la inserción
-                 $insert_query->execute([$nombre_user, $email_user, $password_encriptada, $rol_user, $proyecto_user, "1"]);
+                 $insert_query->execute([$nombre_user, $email_user, $sueldo, $password_encriptada, $rol_user, $proyecto_user, "1"]);
                 
                  //esta es otra manera de ordenar los datos en formato json
                  //$resultado_insert = $insert_query->fetchAll(PDO::FETCH_OBJ);
@@ -131,12 +131,12 @@
             }
         }
 
-        public function actualizarUsuario_modelo($id, $nombre_user, $email_user, $rol_user, $proyecto_user){
+        public function actualizarUsuario_modelo($id, $nombre_user, $email_user, $sueldo_user, $rol_user, $proyecto_user){
             try {
                 //preparamos la instruccion
-                $update_query = $this->newConexion->prepare("call actualizarDatos_procedure(?, ?, ?, ?, ?);");
+                $update_query = $this->newConexion->prepare("call actualizarDatos_procedure(?, ?, ?, ?, ?, ?);");
                 //Ejecutamos la inserción
-                $update_query->execute([$id, $nombre_user, $email_user, $rol_user, $proyecto_user]);
+                $update_query->execute([$id, $nombre_user, $email_user, $sueldo_user, $rol_user, $proyecto_user]);
 
                 if ($update_query == true ) {
                     return true;

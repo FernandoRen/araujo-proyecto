@@ -133,6 +133,8 @@ function agregarProyecto() {
     formulario_nuevoProyecto.append('<input type="hidden" name="peticion" id="peticion" value="insertar">');
     $.post("../controller/controlador-crud-proyectos.php", formulario_nuevoProyecto.serialize(), function(resp) {
         if (resp == true) {
+            let form = document.querySelector("#formulario-nuevoProyecto");
+            form.reset();
             Swal.fire("Éxito", "El proyecto se agregó correctamente", "success");
             cargarProyectos();
         } else {

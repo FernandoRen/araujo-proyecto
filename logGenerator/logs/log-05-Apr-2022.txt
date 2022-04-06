@@ -13,3 +13,9 @@
 [01:14:03 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: jacob@gmail.com inició sesión en la aplicación 
 [01:15:31 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: pablo@gmail.com inició sesión en la aplicación 
 [01:15:44 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: karina@gmail.com inició sesión en la aplicación 
+[02:33:23 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: jacob@gmail.com inició sesión en la aplicación 
+[02:46:12 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: karina@gmail.com inició sesión en la aplicación 
+[23:28:51 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: fernando@hotmail.com inició sesión en la aplicación 
+[23:29:09 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: jacob@gmail.com inició sesión en la aplicación 
+[23:29:43 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: fernando@hotmail.com inició sesión en la aplicación 
+[23:31:38 05-Apr-2022] [localhost/front end - araujo/model/login-model.php] [48] : [INFO] - El usuario con el email: jacob@gmail.com inició sesión en la aplicación 
